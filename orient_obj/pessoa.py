@@ -6,6 +6,12 @@ class Pessoa:
         self.filhos = list(filhos)
     def cumprimentar(self):
         return f'Ola{id( self)}'
+    @staticmethod
+    def metodo_estatico(): #o metodo de classe não precisa de parametro como a função da classe
+        return 42
+    @classmethod #está ligado à classe, logo pode se acessar esta e as atribuições usando o 'cls'
+    def nome_e_atribuição(cls):
+        return f'{cls} - {cls.olhos}'
 if __name__ == '__main__':
     renzo = Pessoa(nome="renzo")
     luciano = Pessoa(renzo, nome = "Luciano")
@@ -33,3 +39,8 @@ if __name__ == '__main__':
     print(id(Pessoa.olhos),id(renzo.olhos),id(luciano.olhos))
     #o endereço é o mesmo para o atributo da classe
     #o dunder dict não mostra os atributos de classe, apenas os de instância
+    print(Pessoa.metodo_estatico(), luciano.metodo_estatico()) # tanto acessando pelo objeto quanto pela classe
+    #retorna o mesmo valor pelo @staticmethod
+    print(Pessoa.nome_e_atribuição(),luciano.nome_e_atribuição()) # pode ser acessado pela classe quanto
+    # pelo objeto da classe e acessar suas atribuições
+    # os metodos e atributos de classe devem ser separados dos de instância
